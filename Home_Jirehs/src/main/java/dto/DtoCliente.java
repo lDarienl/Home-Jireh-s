@@ -6,6 +6,7 @@ package dto;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,8 +20,9 @@ public class DtoCliente implements Serializable {
     private int id;
     private String nombre;
     private String email;
-    private String telefono;
+    private int telefono;
     private String direccion;
+    private ArrayList<DtoCliente> referidos = new ArrayList<>();
 
     // Getters y setters para los atributos
     
@@ -56,13 +58,29 @@ public class DtoCliente implements Serializable {
 		this.email = email;
 	}
 
-	public String getTelefono() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
+    public ArrayList<DtoCliente> getReferidos() {
+        return referidos;
+    }
+
+    public void setReferidos(ArrayList<DtoCliente> referidos) {
+        this.referidos = referidos;
+    }
+
+    @Override
+    public String toString() {
+        return "DtoCliente{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono + ", direccion=" + direccion + ", referidos=" + referidos + '}';
+    }
+         
+    
+
     
 }
+
