@@ -79,7 +79,13 @@ public class DtoCliente implements Serializable {
         return "DtoCliente{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono + ", direccion=" + direccion + ", referidos=" + referidos + '}';
     }
          
-    
+    public int cantidadReferidos(){
+        int cantidad = 0;
+        for (DtoCliente referido : referidos) {
+            cantidad ++;
+        }
+        return cantidad;
+    }
 
     
 }
