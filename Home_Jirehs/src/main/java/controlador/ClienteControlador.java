@@ -8,7 +8,7 @@ import dao.Cliente;
 import dto.DtoCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.Cliente_Detalle;
+import vista.*;
 /**
  *
  * @author juanes
@@ -23,21 +23,27 @@ public class ClienteControlador implements ActionListener{
         modelo = new Cliente();
         UICliente.botonCerrar.addActionListener(this);
     }
-    
-    public void mostar(DtoCliente clien){
+    //metodo para mostar los datos de un cliente
+    public void mostar(){
         UICliente.setVisible(true);
-        UICliente.botonCerrar.addActionListener(this);
-        UICliente.textID.setText(String.valueOf(clien.getId()));
-        UICliente.textNombre.setText(clien.getNombre());
-        UICliente.textEmail.setText(clien.getEmail());
-        
-        
-        
+        UICliente.textID.setText(String.valueOf(cliente.getId()));
+        UICliente.textNombre.setText(cliente.getNombre());
+        UICliente.textEmail.setText(cliente.getEmail());
+        UICliente.textReferido.setText(String.valueOf(cliente.cantidadReferidos()));
+        UICliente.textDireccion.setText(cliente.getDireccion());
     }
+    
+    //metodo para asignar un cliente
+    public void setCliente(DtoCliente cliente){
+        this.cliente = cliente;
+    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        if(UICliente.botonCerrar.equals(e.getSource())){
+            UICliente.setVisible(false);
+        }
     }
     
 }
