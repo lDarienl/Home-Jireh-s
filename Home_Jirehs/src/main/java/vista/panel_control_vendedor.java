@@ -1,23 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
 import com.mycompany.home_jirehs.Login;
+import dto.DtoVenta;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author pc
  */
 public class panel_control_vendedor extends javax.swing.JFrame {
-
-    /**
-     * Creates new form panel_control3
-     */
+    
+    DefaultTableModel modelo;
+    public Object JTextFieldBuscar;
+   
     public panel_control_vendedor() {
-        initComponents();
-    }
+            initComponents();
+            this.setTitle("Panel de Control de Vendedor");
+            this.setLocationRelativeTo(null);
+            modelo = (DefaultTableModel) jTable2.getModel();
+            jTable2.setModel(modelo);
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,16 +39,16 @@ public class panel_control_vendedor extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        TextFieldBuscar = new javax.swing.JTextField();
+        JComboBoxFiltrar = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        JButtonEliminarDatos = new javax.swing.JButton();
+        JButtonModificarDatos = new javax.swing.JButton();
+        JButtonAgregarCliente = new javax.swing.JButton();
+        TButtonAgregarVenta = new javax.swing.JToggleButton();
+        TButtonModificarVenta = new javax.swing.JToggleButton();
+        TButtonVerListaVentas = new javax.swing.JToggleButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,13 +95,13 @@ public class panel_control_vendedor extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre Cliente", "Numero Cliente", "Fecha de Cumpleaños", "Nombre de Vendedor", "Fecha de Venta", "Title 7"
             }
         ));
         jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -111,52 +113,57 @@ public class panel_control_vendedor extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel2.setText("@Home Jireh's");
 
-        jTextField1.setText("Buscar...");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        TextFieldBuscar.setText("Buscar...");
+        TextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                TextFieldBuscarActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar" }));
+        JComboBoxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar", "Fecha de Cumpleaños", "Fecha de Venta", "Cliente", "Vendedor", "Producto" }));
+        JComboBoxFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboBoxFiltrarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Usuario vendedor 1");
 
-        jButton1.setText("Eliminar datos");
+        JButtonEliminarDatos.setText("Eliminar datos");
 
-        jButton2.setText("Modificar datos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JButtonModificarDatos.setText("Modificar datos");
+        JButtonModificarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                JButtonModificarDatosActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Agregar cliente");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        JButtonAgregarCliente.setText("Agregar cliente");
+        JButtonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                JButtonAgregarClienteActionPerformed(evt);
             }
         });
 
-        jToggleButton1.setText("Agregar venta");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        TButtonAgregarVenta.setText("Agregar venta");
+        TButtonAgregarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                TButtonAgregarVentaActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setText("Modificar venta");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        TButtonModificarVenta.setText("Modificar venta");
+        TButtonModificarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                TButtonModificarVentaActionPerformed(evt);
             }
         });
 
-        jToggleButton3.setText("Ver listado de ventas");
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+        TButtonVerListaVentas.setText("Ver listado de ventas");
+        TButtonVerListaVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
+                TButtonVerListaVentasActionPerformed(evt);
             }
         });
 
@@ -174,11 +181,11 @@ public class panel_control_vendedor extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(97, 97, 97)
-                                .addComponent(jToggleButton1)
+                                .addComponent(TButtonAgregarVenta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton2)
+                                .addComponent(TButtonModificarVenta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton3)
+                                .addComponent(TButtonVerListaVentas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
@@ -188,15 +195,15 @@ public class panel_control_vendedor extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jLabel1)
                         .addGap(104, 104, 104)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JComboBoxFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(JButtonAgregarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(JButtonModificarDatos)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(JButtonEliminarDatos)
                         .addGap(24, 24, 24))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -208,23 +215,23 @@ public class panel_control_vendedor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)
-                        .addComponent(jToggleButton1)
-                        .addComponent(jToggleButton2)
-                        .addComponent(jToggleButton3))
+                        .addComponent(TButtonAgregarVenta)
+                        .addComponent(TButtonModificarVenta)
+                        .addComponent(TButtonVerListaVentas))
                     .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(JComboBoxFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JButtonEliminarDatos)
+                            .addComponent(JButtonModificarDatos)
+                            .addComponent(JButtonAgregarCliente))
                         .addGap(21, 21, 21)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -244,33 +251,33 @@ public class panel_control_vendedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void TextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_TextFieldBuscarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void JButtonModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonModificarDatosActionPerformed
 Modificar_Cliente mdfcl = new Modificar_Cliente();
                mdfcl.setVisible(true);
                mdfcl.setLocationRelativeTo(null);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_JButtonModificarDatosActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void JButtonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonAgregarClienteActionPerformed
  Registro_Clientes rgt = new Registro_Clientes();
                rgt.setVisible(true);
                rgt.setLocationRelativeTo(null);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_JButtonAgregarClienteActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void TButtonAgregarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonAgregarVentaActionPerformed
 Registro_Ventas rgt = new Registro_Ventas();
                rgt.setVisible(true);
                rgt.setLocationRelativeTo(null);         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_TButtonAgregarVentaActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void TButtonModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonModificarVentaActionPerformed
 Modificar_Ventas mdfvn = new Modificar_Ventas();
                mdfvn.setVisible(true);
                mdfvn.setLocationRelativeTo(null);         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    }//GEN-LAST:event_TButtonModificarVentaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 Login lg = new Login();
@@ -279,11 +286,15 @@ Login lg = new Login();
                this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+    private void TButtonVerListaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonVerListaVentasActionPerformed
  Lista_Ventas lv = new Lista_Ventas();
          lv.setVisible(true);
          lv.setLocationRelativeTo(null);       
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
+    }//GEN-LAST:event_TButtonVerListaVentasActionPerformed
+
+    private void JComboBoxFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxFiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JComboBoxFiltrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,11 +333,15 @@ Login lg = new Login();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton JButtonAgregarCliente;
+    public javax.swing.JButton JButtonEliminarDatos;
+    public javax.swing.JButton JButtonModificarDatos;
+    public javax.swing.JComboBox<String> JComboBoxFiltrar;
+    public javax.swing.JToggleButton TButtonAgregarVenta;
+    public javax.swing.JToggleButton TButtonModificarVenta;
+    public javax.swing.JToggleButton TButtonVerListaVentas;
+    public javax.swing.JTextField TextFieldBuscar;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -336,10 +351,12 @@ Login lg = new Login();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
+    public javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    public class JTextFieldBuscar {
+
+        public JTextFieldBuscar() {
+        }
+    }
 }
